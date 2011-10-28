@@ -9,9 +9,7 @@ import java.io.InputStream;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
-public class UnzipperTest {
-    private Unzipper unzipper = new Unzipper();
-
+public class SimpleUnzipperTest {
     public static final String REVELATION = // Bible, Rev.13:18
             "Here is wisdom. Let him who has understanding calculate " +
             "the number of the beast, for it is the number of a man: " +
@@ -41,11 +39,10 @@ public class UnzipperTest {
     }
 
     private String unzip(InputStream data) throws IOException {
-        return unzipper.unzip(data);
+        return new SimpleUnzipper(data).unzip();
     }
 
-    private InputStream stream(String text) throws IOException {
+    static InputStream stream(String text) throws IOException {
         return new ByteArrayInputStream(text.getBytes());
     }
-
 }
