@@ -2,7 +2,12 @@ package ee.agile.patterns.composite;
 
 import org.junit.Test;
 
-import static junit.framework.Assert.*;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
 
 public class UnzipperTest {
     private Unzipper unzipper = new Unzipper();
@@ -15,10 +20,32 @@ public class UnzipperTest {
     @Test
     public void revelationCompressesWell() throws Exception {
         String zipped = "Here~=%. Let~HW$UC!1O! beast, for~-=!1OaM: his~1=60&6ty-~6.";
-        String unzipped = unzipper.unzip(zipped);
+        String unzipped = unzip(stream(zipped));
 
-        assertEquals(REVELATION, unzipped);
-        assertEquals(59, zipped.length());
-        assertEquals(153, unzipped.length());
+        assertThat(unzipped, is(REVELATION));
+        assertThat(zipped.length(), is(59));
+        assertThat(unzipped.length(), is(153));
     }
+
+    @Test
+    public void splittingDataIntoPeacesIsNotEasy() throws Exception {
+        InputStream vol1 = stream("Here~=%. Let~HW$");
+        InputStream vol2 = stream("UC!1O! beast, fo");
+        InputStream vol3 = stream("r~-=!1OaM: his~1");
+        InputStream vol4 = stream("=60&6ty-~6.");
+
+        String corrupted = unzip(vol1) + unzip(vol2) +
+                           unzip(vol3) + unzip(vol4);
+
+        assertThat(corrupted, is(not(REVELATION)));
+    }
+
+    private String unzip(InputStream data) throws IOException {
+        return unzipper.unzip(data);
+    }
+
+    private InputStream stream(String text) throws IOException {
+        return new ByteArrayInputStream(text.getBytes());
+    }
+
 }
