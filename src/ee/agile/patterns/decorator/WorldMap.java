@@ -1,7 +1,7 @@
 package ee.agile.patterns.decorator;
 
-public class WorldMap implements Map {
-    private String[] data = {
+public class WorldMap extends AsciiMap {
+    private static final String[] WORLD = {
         "           . _..::__:  ,-\"-\"._        |7       ,     _,.__             ",
         "   _.___ _ _<_>`!(._`.`-.    /         _._     `_ ,_/  '  '-._.---.-.__",
         ">.{     \" \" `-==,',._\\{  \\  / {)      / _ \">_,-' `                mt-2_",
@@ -27,19 +27,7 @@ public class WorldMap implements Map {
         "-.._(                  `-----'                                       `-"
     };
 
-    public String line(int y) {
-        return data[y];
-    }
-
-    public char get(int x, int y) {
-        return line(y).charAt(x);
-    }
-
-    public int width() {
-        return data[0].length();
-    }
-
-    public int height() {
-        return data.length;
+    public WorldMap() {
+        super(WORLD);
     }
 }
