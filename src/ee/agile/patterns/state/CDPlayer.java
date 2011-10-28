@@ -21,6 +21,10 @@ public class CDPlayer {
         System.out.println("prevous track!");
     }
 
+    public void stop() {
+        System.out.println("stop!");
+    }
+
     public boolean isDiscInside() {
         return false;
     }

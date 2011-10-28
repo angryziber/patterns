@@ -28,6 +28,9 @@ public class CDPlayerTest {
 
         player.prev();
         assertEquals(2, player.getTrackNumber());
+
+        player.stop();
+        assertEquals(1, player.getTrackNumber());
     }
 
     @Test(expected = IllegalStateException.class)
