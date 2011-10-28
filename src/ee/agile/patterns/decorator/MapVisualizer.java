@@ -1,5 +1,7 @@
 package ee.agile.patterns.decorator;
 
+import java.awt.*;
+
 public class MapVisualizer {
     public String toString(Map map) {
         StringBuilder buf = new StringBuilder();
@@ -17,6 +19,11 @@ public class MapVisualizer {
     }
 
     public static void main(String[] args) {
-        System.out.println(new MapVisualizer().toString(new WorldMap()));
+        MapVisualizer visualizer = new MapVisualizer();
+        Map world = new WorldMap();
+        Map europe = new MapViewport(world, new Rectangle(30, 1, 20, 6));
+
+        System.out.println(visualizer.toString(world));
+        System.out.println(visualizer.toString(europe));
     }
 }
