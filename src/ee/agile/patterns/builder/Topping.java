@@ -1,6 +1,8 @@
 package ee.agile.patterns.builder;
 
 public enum Topping {
+    SAUCE,
+    CHEESE,
     HAM,
     SALAMI,
     BACON,
