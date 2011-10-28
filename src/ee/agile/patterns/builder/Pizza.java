@@ -7,4 +7,10 @@ public class Pizza {
     private int diameter;
     private Style style;
     private Set<Topping> toppings;
+
+    @Override
+    public String toString() {
+        return "Pizza " + name + ", " + diameter + "cm, " +
+                style + " with " + toppings;
+    }
 }
