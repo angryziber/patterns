@@ -22,11 +22,11 @@ public class CDPlayerTest {
     public void canMoveBetweenTracks() throws Exception {
         assertEquals(1, player.getTrackNumber());
 
-        player.next();
-        player.next();
+        player.forward();
+        player.forward();
         assertEquals(3, player.getTrackNumber());
 
-        player.prev();
+        player.backward();
         assertEquals(2, player.getTrackNumber());
 
         player.stop();

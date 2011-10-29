@@ -1,28 +1,56 @@
 package ee.agile.patterns.state;
 
+import static ee.agile.patterns.state.CDPlayer.State.*;
+
 public class CDPlayer {
+    enum State {
+        EJECTED,
+        IDLE {
+            public State play() {return PLAYING;}
+        },
+        PLAYING {
+            public State play() {return PAUSED;}
+            public State pause() {return PAUSED;}
+            public State forward() {return this;}
+        },
+        PAUSED {
+            public State play() {return PLAYING;}
+            public State pause() {return PLAYING;}
+        },
+        LOCKED;
+
+        public State eject() {return this;}
+        public State play() {return this;}
+        public State pause() {return this;}
+        public State forward() {return this;}
+        public State backward() {return this;}
+        public State stop() {return this;}
+    }
+
+    private State state = IDLE;
+
     public void eject() {
-        System.out.println("eject!");
+        state = state.eject();
     }
 
     public void play() {
-        System.out.println("play!");
+        state = state.play();
     }
 
     public void pause() {
-        System.out.println("pause!");
+        state = state.pause();
     }
 
-    public void next() {
-        System.out.println("next track!");
+    public void forward() {
+        state = state.forward();
     }
 
-    public void prev() {
-        System.out.println("prevous track!");
+    public void backward() {
+        state = state.backward();
     }
 
     public void stop() {
-        System.out.println("stop!");
+        state = state.stop();
     }
 
     public boolean isDiscInside() {
