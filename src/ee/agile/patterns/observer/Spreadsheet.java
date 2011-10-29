@@ -1,12 +1,17 @@
 package ee.agile.patterns.observer;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import static java.lang.Integer.parseInt;
 
-public class Spreadsheet {
+public class Spreadsheet extends Observable {
     private int[][] data = new int[100][26];
 
     public void set(String cell, int value) {
         data[y(cell)][x(cell)] = value;
+        setChanged();
+        notifyObservers();
     }
 
     public int get(String cell) {
