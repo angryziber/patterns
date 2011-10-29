@@ -36,6 +36,7 @@ public class SimpleUnzipperTest {
                            unzip(vol3) + unzip(vol4);
 
         assertThat(corrupted, is(not(REVELATION)));
+        System.out.println(corrupted);
     }
 
     private String unzip(InputStream data) throws IOException {
