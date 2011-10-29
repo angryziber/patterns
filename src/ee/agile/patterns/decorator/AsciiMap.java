@@ -1,6 +1,6 @@
 package ee.agile.patterns.decorator;
 
-public class AsciiMap implements Map {
+public abstract class AsciiMap implements Map {
     private String[] data;
 
     public AsciiMap(String[] data) {
