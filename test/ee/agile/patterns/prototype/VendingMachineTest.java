@@ -7,13 +7,14 @@ import static org.junit.Assert.*;
 public class VendingMachineTest {
     @Test
     public void canDispenseItems() throws Exception {
-        VendingMachine machine = new VendingMachine(new SushiBox(), 25);
+        VendingMachine machine = new VendingMachine(new SushiBox(320), 25);
 
         ItemForSale item1 = machine.dispense();
         ItemForSale item2 = machine.dispense();
 
         assertEquals(23, machine.itemsLeft());
         assertNotSame(item1, item2);
+        assertEquals(320, item2.getPrice());
     }
 
     @Test(expected = IllegalStateException.class)
