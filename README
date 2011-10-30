@@ -1,0 +1,11 @@
+Check out the slides of the talk:
+http://www.slideshare.net/antonkeks/choose-a-pattern-for-a-problem
+
+The code is written mostly in a TDD way, so look at the tests 
+for examples of how the code works!
+
+Each pattern has a dedicated Java package in both src/ and test/
+directories that solves the problem described on the slides.
+
+Enjoy!
+Anton
