@@ -16,7 +16,7 @@ public class Tank implements Fighter {
 
     private Strategy currentStrategy = RANDOM_BATTLE;
 
-    public void action() {
+        public void action() {
         currentStrategy.doSomething();
     }
 
