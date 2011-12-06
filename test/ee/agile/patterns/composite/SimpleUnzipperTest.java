@@ -35,6 +35,7 @@ public class SimpleUnzipperTest {
         String corrupted = unzip(vol1) + unzip(vol2) +
                            unzip(vol3) + unzip(vol4);
 
+        System.out.println(corrupted);
         assertThat(corrupted, is(not(REVELATION)));
     }
 

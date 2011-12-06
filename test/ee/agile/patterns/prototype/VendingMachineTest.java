@@ -21,4 +21,13 @@ public class VendingMachineTest {
         VendingMachine machine = new VendingMachine(new PepsiBottle(), 0);
         machine.dispense();
     }
+
+    @Test
+    public void exampleItemPriceIsPreserved() throws Exception {
+        VendingMachine machine1 = new VendingMachine(new HintaiMagazine(650), 1);
+        VendingMachine machine2 = new VendingMachine(new HintaiMagazine(699), 1);
+
+        assertEquals(650, machine1.dispense().getPrice());
+        assertEquals(699, machine2.dispense().getPrice());
+    }
 }

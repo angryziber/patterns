@@ -16,6 +16,6 @@ public class VendingMachine {
     public ItemForSale dispense() {
         if (count == 0) throw new IllegalStateException("No more " + item + "s  left");
         count--;
-        return item;
+        return item.clone();
     }
 }

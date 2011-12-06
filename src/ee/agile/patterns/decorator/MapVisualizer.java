@@ -17,6 +17,12 @@ public class MapVisualizer {
     }
 
     public static void main(String[] args) {
-        System.out.println(new MapVisualizer().toString(new WorldMap()));
+        MapVisualizer visualizer = new MapVisualizer();
+
+        Map world = new WorldMap();
+        System.out.println(visualizer.toString(world));
+
+        Map europe = new MapViewport(world, 30, 2, 12, 5);
+        System.out.println(visualizer.toString(europe));
     }
 }

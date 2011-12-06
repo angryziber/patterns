@@ -10,6 +10,10 @@ public class Pizza {
     int diameter = 18;
     Style style = Style.THIN_CRUST;
     Set<Topping> toppings = EnumSet.noneOf(Topping.class);
+    boolean isDoubleCheese;
+
+    Pizza() {
+    }
 
     public String getName() {
         return name;

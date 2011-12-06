@@ -1,36 +1,72 @@
 package ee.agile.patterns.state;
 
+import static ee.agile.patterns.state.CDPlayer.State.*;
+
 public class CDPlayer {
+    enum State {
+        EJECTED {
+            public State eject() { return NO_DISC; /* or IDLE */ }
+        },
+        NO_DISC {
+            public State eject() { return EJECTED; }
+        },
+        IDLE {
+            public State eject() { return EJECTED; }
+            public State play() { return PLAYING; }
+        },
+        PLAYING {
+            public State eject() { return EJECTED; }
+            public State pause() { return PAUSED; }
+            public State play() { return PAUSED; }
+            public State next() { return this; /* + next track */ }
+            public State prev() { return this; /* + next track */ }
+            public State stop() { return IDLE; }
+        },
+        PAUSED {
+            public State pause() { return PLAYING; }
+            public State play() { return PLAYING; }
+        };
+
+        public State eject() {return this;}
+        public State play() {return this;}
+        public State pause() {return this;}
+        public State next() {return this;}
+        public State prev() {return this;}
+        public State stop() {return this;}
+    }
+
+    private State state = NO_DISC;
+
     public void eject() {
-        System.out.println("eject!");
+        state = state.eject();
     }
 
     public void play() {
-        System.out.println("play!");
+        state = state.play();
     }
 
     public void pause() {
-        System.out.println("pause!");
+        state = state.pause();
     }
 
     public void next() {
-        System.out.println("next track!");
+        state = state.next();
     }
 
     public void prev() {
-        System.out.println("prevous track!");
+        state = state.prev();
     }
 
     public void stop() {
-        System.out.println("stop!");
+        state = state.stop();
     }
 
     public boolean isDiscInside() {
-        return false;
+        return state != NO_DISC;
     }
 
     public boolean isPlaying() {
-        return false;
+        return state == PLAYING;
     }
 
     public int getTrackNumber() {
